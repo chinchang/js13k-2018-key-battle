@@ -6,17 +6,15 @@ const FRAME_DELAY = 1000 / FPS;
 let lastUpdateTime = Date.now();
 const W = window.innerWidth;
 const H = window.innerHeight;
+const TREE_COUNT = 10;
+
 class Word {
     constructor(word) {
         this.isActive = true;
-        this.el = document.createElement('div');
-        this.el.classList.add('sprite');
-        this.el.classList.add('word');
+        this.el = createNode('div', ['sprite', 'word'])
 
         word.split('').forEach(char => {
-            const charEl = document.createElement('div');
-            charEl.classList.add('alphabet');
-            charEl.classList.add(`alphabet-${char}`);
+            const charEl = createNode('div', ['alphabet', `alphabet-${char}`])
             this.el.appendChild(charEl);
         });
         document.body.appendChild(this.el);
@@ -46,9 +44,7 @@ class Bird {
         this.creationTime = Date.now();
         this.x = 0;
         this.y = 0;
-        var el = document.createElement('div');
-        el.classList.add('sprite');
-        el.classList.add('bird');
+        var el = createNode('div', ['sprite', 'bird'])
         document.body.appendChild(el);
         this.el = el;
     }
@@ -76,9 +72,7 @@ class Cloud {
         this.creationTime = Date.now();
         this.x = 0;
         this.y = 0;
-        var el = document.createElement('div');
-        el.classList.add('sprite');
-        el.classList.add('cloud');
+        var el = createNode('div', ['sprite', 'cloud'])
         document.body.appendChild(el);
         this.el = el;
     }
@@ -103,12 +97,18 @@ function random(a, b) {
     return a + ~~(Math.random() * (b - a));
 }
 
+function createNode(tag, classes) {
+    const node = document.createElement(tag);
+    classes.forEach(claz => node.classList.add(claz));
+    return node;
+}
+
 function update() {
     // console.log('update')
-    if (Math.random() < 0.08) {
-        // const b = new Word('deaf');
-        // b.y = `calc(var(--pixel-size) * ${random(5,20)})`;
-        // sprites.push(b);
+    if (Math.random() < 0.01) {
+        const b = Math.random() > 0.5 ? new Bird() : new Cloud();
+        b.y = `calc(var(--pixel-size) * ${random(5,20)})`;
+        sprites.push(b);
 
     }
     sprites.forEach(s => s.update())
@@ -130,7 +130,17 @@ function loop() {
     render();
 }
 
-loop();
-const b = new Word('deaf');
-// b.y = `calc(var(--pixel-size) * ${random(5,20)})`;
-sprites.push(b);
+function init() {
+    const b = new Word('deaf');
+    // b.y = `calc(var(--pixel-size) * ${random(5,20)})`;
+    sprites.push(b);
+
+    for (let i = TREE_COUNT; i--;) {
+        const tree = createNode('div', ['sprite', 'tree']);
+        tree.style.left = `calc(var(--pixel-size) * ${random(5, 100)})`;
+        document.body.appendChild(tree);
+    }
+
+    loop();
+}
+init();
