@@ -1,7 +1,7 @@
 var styles = getComputedStyle(document.documentElement);
 const PIXEL_SIZE = parseInt(styles.getPropertyValue('--zoom').trim(), 0);
 let sprites = [];
-const FPS = 5;
+const FPS = 30;
 const FRAME_DELAY = 1000 / FPS;
 let lastUpdateTime = Date.now();
 const W = window.innerWidth;
@@ -20,6 +20,7 @@ class Word {
         document.body.appendChild(this.el);
         this.x = W / 3;
         this.y = 0;
+        this.width = this.el.getBoundingClientRect().width;
     }
     update() {
         if (!this.isActive) {
@@ -29,6 +30,9 @@ class Word {
         this.y += PIXEL_SIZE;
         if (this.y > H) {
             this.isActive = false;
+            blast(this.x + this.width / 2 + random(-100, 100), H);
+            blast(this.x + this.width / 2 + random(-100, 100), H);
+            blast(this.x + this.width / 2 + random(-100, 100), H);
             // this.el.remove();
         }
     }
@@ -53,14 +57,14 @@ class Bird {
             return;
         }
 
-        this.x += PIXEL_SIZE;
+        this.x += 6;
         if (this.x > W) {
             this.isActive = false;
             this.el.remove();
         }
     }
     render() {
-        this.el.style.left = `${this.x}px`;
+        this.el.style.left = `${pixelize(this.x)}px`;
         this.el.style.bottom = `${this.y}`;
     }
 }
@@ -81,16 +85,63 @@ class Cloud {
             return;
         }
 
-        this.x += PIXEL_SIZE;
+        this.x += 2;
         if (this.x > W) {
             this.isActive = false;
             this.el.remove();
         }
     }
     render() {
-        this.el.style.left = `${this.x}px`;
+        this.el.style.left = `${pixelize(this.x)}px`;
         this.el.style.bottom = `${this.y}`;
     }
+}
+
+class Particle {
+    constructor(x, y) {
+        this.isActive = true;
+        this.x = x;
+        this.y = y;
+        this.size = random(1, 5);
+        this.speedX = random(-5, 5);
+        this.speedY = random(-5, 5);
+        this.drag = 0.92;
+
+        this.wander = 0.15;
+        this.theta = random(0, 360) * Math.PI / 180;
+        var el = createNode('div', ['particle'])
+        document.body.appendChild(el);
+        this.el = el;
+    }
+    update() {
+        if (!this.isActive) {
+            return;
+        }
+
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.speedX *= this.drag;
+        this.speedY *= this.drag;
+        this.theta += random(-0.5, 0.5);
+        this.speedX += Math.sin(this.theta) * 0.1;
+        this.speedY += Math.cos(this.theta) * 0.1;
+        this.size *= 0.8;
+
+
+        if (this.size < 0.1) {
+            this.isActive = false;
+            this.el.remove();
+        }
+    }
+    render() {
+        this.el.style.left = `${pixelize(this.x)}px`;
+        this.el.style.top = `${pixelize(this.y)}px`;
+        this.el.style.transform = `scale(${this.size})`;
+    }
+}
+
+function pixelize(n) {
+    return Math.floor(n / PIXEL_SIZE) * PIXEL_SIZE;
 }
 
 function random(a, b) {
@@ -103,10 +154,23 @@ function createNode(tag, classes) {
     return node;
 }
 
+function blast(x, y) {
+    for (let i = 10; i--;) {
+        const p = new Particle(x + random(-10, 10), y + random(-10, 10));
+        sprites.push(p);
+    }
+}
+
+
 function update() {
-    // console.log('update')
-    if (Math.random() < 0.01) {
-        const b = Math.random() > 0.5 ? new Bird() : new Cloud();
+    if (Math.random() < 0.015) {
+        const b = new Bird();
+        b.y = `calc(var(--pixel-size) * ${random(15,30)})`;
+        sprites.push(b);
+
+    }
+    if (Math.random() < 0.005) {
+        const b = new Cloud();
         b.y = `calc(var(--pixel-size) * ${random(5,20)})`;
         sprites.push(b);
 
@@ -140,6 +204,9 @@ function init() {
         tree.style.left = `calc(var(--pixel-size) * ${random(5, 100)})`;
         document.body.appendChild(tree);
     }
+    window.addEventListener('click', e => {
+        blast(e.pageX, e.pageY);
+    })
 
     loop();
 }
