@@ -15,7 +15,6 @@ class Word {
 
         word.split('').forEach(char => {
             const charEl = document.createElement('div');
-            // charEl.classList.add('sprite');
             charEl.classList.add('alphabet');
             charEl.classList.add(`alphabet-${char}`);
             this.el.appendChild(charEl);
@@ -29,10 +28,10 @@ class Word {
             return;
         }
 
-        this.y += PIXEL_SIZE / 2;
+        this.y += PIXEL_SIZE;
         if (this.y > H) {
             this.isActive = false;
-            this.el.remove();
+            // this.el.remove();
         }
     }
     render() {
