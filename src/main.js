@@ -7,20 +7,35 @@ let lastUpdateTime = Date.now();
 const W = window.innerWidth;
 const H = window.innerHeight;
 const TREE_COUNT = 10;
+const timeColors = [
+    'hsl(50, 69%, 61%)',
+    'hsl(197, 71%, 60%)',
+    'hsl(208, 51%, 55%)',
+    'hsl(214, 46%, 35%)',
+    'hsl(219, 48%, 13%)'
+];
+let timeIndex = 0;
+let currentWord = '';
+const playerWords = ['', ''];
+const playerScores = [0, 0];
 
 class Word {
     constructor(word) {
         this.isActive = true;
+        this.word = word;
         this.el = createNode('div', ['sprite', 'word'])
 
-        word.split('').forEach(char => {
-            const charEl = createNode('div', ['alphabet', `alphabet-${char}`])
+        word.toLowerCase().split('').forEach(char => {
+            const charEl = createNode('div', ['alphabet', `alphabet-${char === ' ' ? '' : char}`])
             this.el.appendChild(charEl);
         });
         document.body.appendChild(this.el);
-        this.x = W / 3;
+        this.x = W / 2 - (word.length * PIXEL_SIZE * 3);
         this.y = 0;
         this.width = this.el.getBoundingClientRect().width;
+    }
+    destroy() {
+        this.el.remove();
     }
     update() {
         if (!this.isActive) {
@@ -30,9 +45,10 @@ class Word {
         this.y += PIXEL_SIZE;
         if (this.y > H) {
             this.isActive = false;
-            blast(this.x + this.width / 2 + random(-100, 100), H);
-            blast(this.x + this.width / 2 + random(-100, 100), H);
-            blast(this.x + this.width / 2 + random(-100, 100), H);
+            blast(this.x + this.width / 2 + random(-this.width / 2, this.width / 2), H);
+            blast(this.x + this.width / 2 + random(-this.width / 2, this.width / 2), H);
+            blast(this.x + this.width / 2 + random(-this.width / 2, this.width / 2), H);
+            blast(this.x + this.width / 2 + random(-this.width / 2, this.width / 2), H);
             // this.el.remove();
         }
     }
@@ -148,6 +164,10 @@ function random(a, b) {
     return a + ~~(Math.random() * (b - a));
 }
 
+function incrementTime() {
+    document.body.style.backgroundColor = timeColors[++timeIndex % timeColors.length];
+}
+
 function createNode(tag, classes) {
     const node = document.createElement(tag);
     classes.forEach(claz => node.classList.add(claz));
@@ -163,6 +183,9 @@ function blast(x, y) {
 
 
 function update() {
+    if (Math.random() < 0.01) {
+        incrementTime();
+    }
     if (Math.random() < 0.015) {
         const b = new Bird();
         b.y = `calc(var(--pixel-size) * ${random(15,30)})`;
@@ -194,10 +217,34 @@ function loop() {
     render();
 }
 
+function checkWin() {
+    var didWon = false;
+    if (playerWords[0] === currentWord.word) {
+        console.log('PLAYER 1 WON');
+        playerScores[0]++;
+        didWon = true;
+    } else if (playerWords[1] === currentWord.word) {
+        console.log('PLAYER 2 WON');
+        playerScores[1]++;
+        didWon = true;
+    }
+    if (didWon) {
+        playerWords[0] = playerWords[1] = ''
+        startNewWord();
+    }
+}
+
+function startNewWord() {
+    if (currentWord) {
+        currentWord.destroy();
+    }
+    const word = ['chang', 'halwa', 'top', 'cry', 'hop'][~~(Math.random() * 5)]
+    currentWord = new Word(word);
+    sprites.push(currentWord);
+}
+
 function init() {
-    const b = new Word('deaf');
-    // b.y = `calc(var(--pixel-size) * ${random(5,20)})`;
-    sprites.push(b);
+    startNewWord();
 
     for (let i = TREE_COUNT; i--;) {
         const tree = createNode('div', ['sprite', 'tree']);
@@ -206,6 +253,11 @@ function init() {
     }
     window.addEventListener('click', e => {
         blast(e.pageX, e.pageY);
+    });
+    window.addEventListener('controllerinput', e => {
+        console.log('controller', e);
+        playerWords[e.playerId] += e.letter;
+        checkWin();
     })
 
     loop();

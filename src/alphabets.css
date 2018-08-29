@@ -1,0 +1,114 @@
+/* ALPHABETS */
+
+.alphabet {
+    width: 7px;
+    height: 7px;
+}
+
+.alphabet:after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 1px;
+    background: transparent;
+}
+
+.alphabet-a:after {
+    box-shadow: 5px 5px #ffffff, 5px 4px #ffffff, 5px 3px #ffffff, 5px 2px #ffffff, 4px 3px #ffffff, 3px 3px #ffffff, 2px 3px #ffffff, 1px 5px #ffffff, 1px 4px #ffffff, 1px 3px #ffffff, 1px 2px #ffffff, 2px 1px #ffffff, 3px 1px #ffffff, 4px 1px #ffffff, 1px 1px #000000, 2px 0px #000000, 3px 0px #000000, 4px 0px #000000, 2px 2px #000000, 3px 2px #000000, 4px 2px #000000, 2px 4px #000000, 3px 4px #000000, 4px 4px #000000, 5px 6px #000000, 6px 2px #000000, 6px 3px #000000, 6px 4px #000000, 6px 5px #000000, 5px 1px #000000, 0px 2px #000000, 0px 3px #000000, 0px 4px #000000, 0px 5px #000000, 1px 6px #000000, 2px 5px #000000, 4px 5px #000000, 0px 6px #000000, 2px 6px #000000, 4px 6px #000000, 6px 6px #000000;
+}
+
+.alphabet-b:after {
+    box-shadow: 1px 1px #ffffff, 2px 1px #ffffff, 3px 1px #ffffff, 1px 2px #ffffff, 1px 3px #ffffff, 1px 4px #ffffff, 1px 5px #ffffff, 2px 5px #ffffff, 3px 5px #ffffff, 4px 2px #ffffff, 2px 3px #ffffff, 3px 3px #ffffff, 4px 4px #ffffff, 0px 1px #000000, 0px 2px #000000, 0px 3px #000000, 0px 4px #000000, 0px 5px #000000, 1px 6px #000000, 2px 6px #000000, 3px 6px #000000, 4px 5px #000000, 5px 4px #000000, 4px 3px #000000, 5px 2px #000000, 4px 1px #000000, 1px 0px #000000, 2px 0px #000000, 3px 0px #000000, 0px 6px #000000;
+}
+
+.alphabet-c:after {
+    box-shadow: 1px 2px #ffffff, 1px 3px #ffffff, 1px 4px #ffffff, 2px 5px #ffffff, 3px 5px #ffffff, 4px 5px #ffffff, 2px 1px #ffffff, 3px 1px #ffffff, 4px 1px #ffffff, 0px 2px #000000, 0px 3px #000000, 0px 4px #000000, 1px 5px #000000, 2px 6px #000000, 3px 6px #000000, 4px 6px #000000, 5px 6px #000000, 2px 4px #000000, 3px 4px #000000, 4px 4px #000000, 5px 4px #000000, 5px 5px #000000, 2px 3px #000000, 2px 2px #000000, 1px 1px #000000, 2px 0px #000000, 3px 0px #000000, 4px 0px #000000, 5px 0px #000000, 5px 1px #000000, 5px 2px #000000, 4px 2px #000000, 3px 2px #000000;
+}
+
+.alphabet-d:after {
+    box-shadow: 1px 2px #ffffff, 1px 3px #ffffff, 1px 4px #ffffff, 2px 1px #ffffff, 1px 5px #ffffff, 2px 5px #ffffff, 3px 5px #ffffff, 4px 4px #ffffff, 4px 3px #ffffff, 4px 2px #ffffff, 3px 1px #ffffff, 0px 1px #000000, 0px 2px #000000, 0px 3px #000000, 0px 4px #000000, 0px 5px #000000, 0px 6px #000000, 1px 6px #000000, 2px 6px #000000, 3px 6px #000000, 4px 5px #000000, 5px 4px #000000, 5px 3px #000000, 5px 2px #000000, 4px 1px #000000, 3px 0px #000000, 2px 0px #000000, 1px 0px #000000, 1px 1px #ffffff, 2px 2px #000000, 2px 3px #000000, 2px 4px #000000, 3px 4px #000000, 3px 3px #000000, 3px 2px #000000;
+}
+
+.alphabet-e:after {
+    box-shadow: 1px 1px #ffffff, 1px 2px #ffffff, 1px 3px #ffffff, 1px 4px #ffffff, 2px 3px #ffffff, 1px 5px #ffffff, 2px 5px #ffffff, 3px 5px #ffffff, 4px 5px #ffffff, 2px 1px #ffffff, 3px 1px #ffffff, 4px 1px #ffffff, 0px 1px #000000, 0px 2px #000000, 0px 3px #000000, 0px 4px #000000, 0px 5px #000000, 0px 6px #000000, 1px 6px #000000, 2px 6px #000000, 3px 6px #000000, 4px 6px #000000, 5px 6px #000000, 5px 5px #000000, 5px 4px #000000, 4px 4px #000000, 3px 4px #000000, 2px 4px #000000, 3px 3px #000000, 3px 2px #000000, 2px 2px #000000, 1px 0px #000000, 2px 0px #000000, 3px 0px #000000, 4px 0px #000000, 5px 0px #000000, 5px 1px #000000, 5px 2px #000000, 4px 2px #000000;
+}
+
+.alphabet-f:after {
+    box-shadow: 1px 1px #ffffff, 1px 2px #ffffff, 1px 3px #ffffff, 1px 4px #ffffff, 2px 3px #ffffff, 1px 5px #ffffff, 2px 1px #ffffff, 3px 1px #ffffff, 4px 1px #ffffff, 0px 1px #000000, 0px 2px #000000, 0px 3px #000000, 0px 4px #000000, 0px 5px #000000, 0px 6px #000000, 1px 6px #000000, 2px 6px #000000, 3px 4px #000000, 2px 4px #000000, 3px 3px #000000, 3px 2px #000000, 2px 2px #000000, 1px 0px #000000, 2px 0px #000000, 3px 0px #000000, 4px 0px #000000, 5px 0px #000000, 5px 1px #000000, 5px 2px #000000, 4px 2px #000000, 2px 5px #000000;
+}
+
+.alphabet-g:after {
+    box-shadow: 1px 2px #ffffff, 1px 3px #ffffff, 1px 4px #ffffff, 2px 1px #ffffff, 3px 1px #ffffff, 4px 1px #ffffff, 0px 2px #000000, 0px 3px #000000, 0px 4px #000000, 2px 6px #000000, 3px 4px #000000, 2px 4px #000000, 2px 0px #000000, 3px 0px #000000, 4px 0px #000000, 5px 0px #000000, 5px 1px #000000, 3px 3px #ffffff, 4px 3px #ffffff, 4px 4px #ffffff, 2px 5px #ffffff, 3px 5px #ffffff, 4px 5px #ffffff, 1px 5px #000000, 3px 6px #000000, 4px 6px #000000, 5px 6px #000000, 5px 5px #000000, 5px 4px #000000, 5px 3px #000000, 2px 3px #000000, 1px 1px #000000, 4px 2px #000000, 3px 2px #000000, 2px 2px #000000;
+}
+
+.alphabet-h:after {
+    box-shadow: 1px 1px #ffffff, 1px 2px #ffffff, 1px 3px #ffffff, 1px 4px #ffffff, 1px 5px #ffffff, 2px 3px #ffffff, 3px 3px #ffffff, 4px 3px #ffffff, 4px 2px #ffffff, 4px 4px #ffffff, 4px 5px #ffffff, 0px 1px #000000, 0px 2px #000000, 0px 3px #000000, 0px 4px #000000, 0px 5px #000000, 2px 5px #000000, 2px 4px #000000, 3px 4px #000000, 3px 5px #000000, 2px 1px #000000, 2px 2px #000000, 3px 2px #000000, 3px 1px #000000, 4px 0px #000000, 4px 1px #ffffff, 5px 1px #000000, 5px 2px #000000, 5px 3px #000000, 5px 4px #000000, 5px 5px #000000, 4px 6px #000000, 1px 6px #000000, 1px 0px #000000, 5px 0px #000000, 0px 6px #000000, 5px 6px #000000;
+}
+
+.alphabet-i:after {
+    box-shadow: 1px 1px #000000, 1px 2px #000000, 1px 3px #000000, 1px 4px #000000, 1px 5px #000000, 1px 6px #000000, 2px 6px #000000, 3px 6px #000000, 3px 5px #000000, 3px 4px #000000, 3px 3px #000000, 3px 2px #000000, 3px 1px #000000, 3px 0px #000000, 2px 0px #000000, 1px 0px #000000, 2px 1px #ffffff, 2px 2px #ffffff, 2px 3px #ffffff, 2px 4px #ffffff, 2px 5px #ffffff;
+}
+
+.alphabet-j:after {
+    box-shadow: 4px 1px #ffffff, 4px 2px #ffffff, 4px 3px #ffffff, 4px 4px #ffffff, 3px 5px #ffffff, 2px 5px #ffffff, 1px 4px #ffffff, 1px 3px #000000, 2px 4px #000000, 3px 4px #000000, 3px 3px #000000, 3px 2px #000000, 3px 1px #000000, 3px 0px #000000, 4px 0px #000000, 5px 0px #000000, 5px 1px #000000, 5px 2px #000000, 5px 3px #000000, 5px 4px #000000, 4px 5px #000000, 3px 6px #000000, 2px 6px #000000, 1px 5px #000000, 0px 4px #000000, 0px 3px #000000;
+}
+
+.alphabet-l:after {
+    box-shadow: 2px 5px #ffffff, 3px 5px #ffffff, 2px 1px #ffffff, 2px 2px #ffffff, 2px 3px #ffffff, 4px 5px #ffffff, 2px 4px #ffffff, 1px 1px #000000, 1px 2px #000000, 1px 3px #000000, 1px 4px #000000, 1px 5px #000000, 1px 6px #000000, 2px 6px #000000, 3px 6px #000000, 4px 6px #000000, 1px 0px #000000, 2px 0px #000000, 3px 0px #000000, 3px 1px #000000, 3px 2px #000000, 3px 3px #000000, 3px 4px #000000, 4px 4px #000000, 5px 4px #000000, 5px 5px #000000, 5px 6px #000000;
+}
+
+.alphabet-m:after {
+    box-shadow: 2px 3px #000000, 2px 4px #000000, 1px 1px #ffffff, 1px 2px #ffffff, 1px 3px #ffffff, 1px 4px #ffffff, 1px 5px #ffffff, 2px 2px #ffffff, 3px 3px #ffffff, 4px 2px #ffffff, 5px 1px #ffffff, 5px 2px #ffffff, 5px 3px #ffffff, 5px 4px #ffffff, 5px 5px #ffffff, 2px 5px #000000, 0px 5px #000000, 0px 4px #000000, 0px 3px #000000, 0px 2px #000000, 0px 1px #000000, 3px 2px #000000, 2px 1px #000000, 1px 0px #000000, 4px 1px #000000, 5px 0px #000000, 4px 3px #000000, 3px 4px #000000, 4px 4px #000000, 4px 5px #000000, 6px 5px #000000, 6px 3px #000000, 6px 2px #000000, 6px 1px #000000, 6px 4px #000000, 0px 6px #000000, 1px 6px #000000, 2px 6px #000000, 4px 6px #000000, 5px 6px #000000, 6px 6px #000000, 6px 0px #000000;
+}
+
+.alphabet-n:after {
+    box-shadow: 2px 3px #000000, 2px 4px #000000, 1px 1px #ffffff, 1px 2px #ffffff, 1px 3px #ffffff, 1px 4px #ffffff, 1px 5px #ffffff, 2px 2px #ffffff, 3px 3px #ffffff, 4px 2px #ffffff, 2px 5px #000000, 0px 5px #000000, 0px 4px #000000, 0px 3px #000000, 0px 2px #000000, 0px 1px #000000, 3px 2px #000000, 2px 1px #000000, 3px 4px #000000, 0px 6px #000000, 1px 6px #000000, 2px 6px #000000, 4px 1px #ffffff, 4px 3px #ffffff, 4px 4px #ffffff, 4px 5px #ffffff, 4px 6px #000000, 5px 6px #000000, 5px 5px #000000, 5px 4px #000000, 5px 3px #000000, 5px 2px #000000, 5px 1px #000000, 4px 0px #000000, 5px 0px #000000, 1px 0px #000000, 3px 1px #000000, 3px 5px #000000;
+}
+
+.alphabet-o:after {
+    box-shadow: 2px 3px #000000, 2px 4px #000000, 1px 2px #ffffff, 1px 3px #ffffff, 1px 4px #ffffff, 4px 2px #ffffff, 0px 4px #000000, 0px 3px #000000, 0px 2px #000000, 3px 2px #000000, 3px 4px #000000, 4px 3px #ffffff, 4px 4px #ffffff, 5px 4px #000000, 5px 3px #000000, 5px 2px #000000, 2px 1px #ffffff, 3px 1px #ffffff, 2px 2px #000000, 3px 3px #000000, 2px 5px #ffffff, 3px 5px #ffffff, 1px 5px #000000, 2px 6px #000000, 3px 6px #000000, 4px 5px #000000, 4px 1px #000000, 3px 0px #000000, 2px 0px #000000, 1px 1px #000000, 1px 0px #000000, 4px 0px #000000, 5px 1px #000000, 5px 5px #000000, 4px 6px #000000, 1px 6px #000000, 0px 5px #000000, 0px 1px #000000;
+}
+
+.alphabet-p:after {
+    box-shadow: 1px 1px #ffffff, 1px 2px #ffffff, 1px 3px #ffffff, 1px 4px #ffffff, 1px 5px #ffffff, 2px 3px #ffffff, 3px 3px #ffffff, 4px 2px #ffffff, 3px 1px #ffffff, 2px 1px #ffffff, 2px 2px #000000, 3px 2px #000000, 4px 1px #000000, 3px 0px #000000, 1px 0px #000000, 2px 0px #000000, 0px 1px #000000, 0px 2px #000000, 0px 3px #000000, 0px 4px #000000, 0px 5px #000000, 0px 6px #000000, 1px 6px #000000, 2px 6px #000000, 2px 5px #000000, 2px 4px #000000, 3px 4px #000000, 4px 3px #000000, 5px 2px #000000;
+}
+
+.alphabet-q:after {
+    box-shadow: 2px 3px #000000, 2px 4px #000000, 1px 2px #ffffff, 1px 3px #ffffff, 1px 4px #ffffff, 4px 2px #ffffff, 0px 4px #000000, 0px 3px #000000, 0px 2px #000000, 3px 2px #000000, 4px 3px #ffffff, 4px 4px #ffffff, 5px 4px #000000, 5px 3px #000000, 5px 2px #000000, 2px 1px #ffffff, 3px 1px #ffffff, 2px 2px #000000, 3px 3px #000000, 2px 5px #ffffff, 3px 5px #ffffff, 1px 5px #000000, 2px 6px #000000, 3px 6px #000000, 4px 1px #000000, 3px 0px #000000, 2px 0px #000000, 1px 1px #000000, 1px 0px #000000, 4px 0px #000000, 5px 1px #000000, 5px 5px #000000, 4px 6px #000000, 1px 6px #000000, 0px 5px #000000, 0px 1px #000000, 3px 4px #ffffff, 4px 5px #ffffff, 5px 6px #000000;
+}
+
+.alphabet-r:after {
+    box-shadow: 1px 1px #ffffff, 1px 2px #ffffff, 1px 3px #ffffff, 1px 4px #ffffff, 1px 5px #ffffff, 2px 3px #ffffff, 3px 3px #ffffff, 4px 2px #ffffff, 3px 1px #ffffff, 2px 1px #ffffff, 2px 2px #000000, 3px 2px #000000, 4px 1px #000000, 3px 0px #000000, 1px 0px #000000, 2px 0px #000000, 0px 1px #000000, 0px 2px #000000, 0px 3px #000000, 0px 4px #000000, 0px 5px #000000, 0px 6px #000000, 1px 6px #000000, 2px 6px #000000, 2px 5px #000000, 2px 4px #000000, 4px 3px #000000, 5px 2px #000000, 3px 4px #ffffff, 4px 5px #ffffff, 3px 5px #000000, 4px 6px #000000, 5px 6px #000000, 5px 5px #000000, 4px 4px #000000;
+}
+
+.alphabet-s:after {
+    box-shadow: 1px 2px #ffffff, 2px 1px #ffffff, 3px 1px #ffffff, 4px 1px #ffffff, 2px 3px #ffffff, 3px 3px #ffffff, 4px 4px #ffffff, 3px 5px #ffffff, 2px 5px #ffffff, 1px 5px #ffffff, 3px 4px #000000, 2px 4px #000000, 0px 2px #000000, 1px 1px #000000, 2px 0px #000000, 3px 0px #000000, 4px 0px #000000, 5px 0px #000000, 1px 6px #000000, 2px 6px #000000, 3px 6px #000000, 4px 5px #000000, 5px 4px #000000, 4px 3px #000000, 3px 2px #000000, 2px 2px #000000, 4px 2px #000000, 5px 2px #000000, 5px 1px #000000, 0px 5px #000000, 1px 3px #000000, 1px 4px #000000, 0px 6px #000000, 0px 4px #000000;
+}
+
+.alphabet-t:after {
+    box-shadow: 2px 1px #ffffff, 3px 1px #ffffff, 4px 1px #ffffff, 3px 2px #ffffff, 3px 3px #ffffff, 3px 4px #ffffff, 3px 5px #ffffff, 1px 0px #000000, 1px 1px #000000, 1px 2px #000000, 2px 2px #000000, 2px 3px #000000, 2px 4px #000000, 2px 5px #000000, 2px 6px #000000, 3px 6px #000000, 4px 6px #000000, 4px 5px #000000, 4px 4px #000000, 4px 3px #000000, 4px 2px #000000, 5px 2px #000000, 5px 1px #000000, 5px 0px #000000, 4px 0px #000000, 3px 0px #000000, 2px 0px #000000;
+}
+
+.alphabet-u:after {
+    box-shadow: 4px 1px #ffffff, 3px 5px #ffffff, 1px 0px #000000, 2px 2px #000000, 2px 3px #000000, 2px 4px #000000, 2px 6px #000000, 3px 6px #000000, 4px 6px #000000, 5px 2px #000000, 5px 1px #000000, 5px 0px #000000, 4px 0px #000000, 3px 0px #000000, 2px 0px #000000, 1px 1px #ffffff, 1px 2px #ffffff, 1px 3px #ffffff, 1px 4px #ffffff, 1px 5px #ffffff, 2px 5px #ffffff, 4px 5px #ffffff, 4px 4px #ffffff, 4px 3px #ffffff, 4px 2px #ffffff, 2px 1px #000000, 3px 4px #000000, 3px 3px #000000, 3px 2px #000000, 3px 1px #000000, 0px 1px #000000, 0px 2px #000000, 0px 3px #000000, 0px 4px #000000, 0px 5px #000000, 0px 6px #000000, 1px 6px #000000, 5px 6px #000000, 5px 5px #000000, 5px 4px #000000, 5px 3px #000000;
+}
+
+.alphabet-v:after {
+    box-shadow: 2px 1px #ffffff, 2px 2px #ffffff, 2px 3px #ffffff, 2px 4px #ffffff, 4px 1px #ffffff, 4px 2px #ffffff, 4px 3px #ffffff, 4px 4px #ffffff, 3px 5px #ffffff, 1px 1px #000000, 1px 2px #000000, 1px 3px #000000, 1px 4px #000000, 2px 5px #000000, 3px 6px #000000, 4px 5px #000000, 5px 4px #000000, 5px 3px #000000, 5px 2px #000000, 5px 1px #000000, 1px 0px #000000, 2px 0px #000000, 4px 0px #000000, 5px 0px #000000, 3px 1px #000000, 3px 2px #000000, 3px 3px #000000, 3px 4px #000000;
+}
+
+.alphabet-w:after {
+    box-shadow: 1px 1px #ffffff, 5px 1px #ffffff, 1px 2px #ffffff, 1px 3px #ffffff, 1px 4px #ffffff, 5px 2px #ffffff, 5px 3px #ffffff, 5px 4px #ffffff, 2px 5px #ffffff, 3px 4px #ffffff, 4px 5px #ffffff, 0px 1px #000000, 0px 2px #000000, 0px 3px #000000, 0px 4px #000000, 1px 5px #000000, 2px 6px #000000, 3px 5px #000000, 4px 6px #000000, 5px 5px #000000, 6px 4px #000000, 6px 3px #000000, 6px 2px #000000, 6px 1px #000000, 1px 0px #000000, 2px 0px #000000, 2px 1px #000000, 2px 2px #000000, 2px 3px #000000, 2px 4px #000000, 3px 3px #000000, 4px 4px #000000, 4px 3px #000000, 4px 2px #000000, 4px 1px #000000, 4px 0px #000000, 5px 0px #000000, 6px 0px #000000;
+}
+
+.alphabet-x:after {
+    box-shadow: 2px 1px #ffffff, 2px 2px #ffffff, 3px 3px #ffffff, 2px 4px #ffffff, 2px 5px #ffffff, 4px 4px #ffffff, 4px 5px #ffffff, 4px 2px #ffffff, 4px 1px #ffffff, 2px 0px #000000, 1px 1px #000000, 1px 2px #000000, 2px 3px #000000, 1px 4px #000000, 1px 5px #000000, 2px 6px #000000, 3px 4px #000000, 3px 5px #000000, 4px 6px #000000, 4px 3px #000000, 5px 4px #000000, 5px 5px #000000, 5px 2px #000000, 5px 1px #000000, 4px 0px #000000, 3px 1px #000000, 3px 2px #000000, 1px 0px #000000, 5px 0px #000000, 5px 6px #000000, 1px 6px #000000;
+}
+
+.alphabet-y:after {
+    box-shadow: 2px 1px #ffffff, 2px 2px #ffffff, 4px 1px #ffffff, 4px 2px #ffffff, 2px 3px #ffffff, 4px 3px #ffffff, 3px 4px #ffffff, 3px 5px #ffffff, 3px 3px #ffffff, 1px 1px #000000, 1px 2px #000000, 1px 3px #000000, 1px 4px #000000, 2px 4px #000000, 2px 5px #000000, 2px 6px #000000, 3px 6px #000000, 4px 6px #000000, 4px 5px #000000, 4px 4px #000000, 5px 4px #000000, 5px 3px #000000, 5px 2px #000000, 5px 1px #000000, 5px 0px #000000, 4px 0px #000000, 3px 0px #000000, 3px 1px #000000, 3px 2px #000000, 2px 0px #000000, 1px 0px #000000;
+}
+
+.alphabet-z:after {
+    box-shadow: 2px 1px #ffffff, 4px 1px #ffffff, 4px 2px #ffffff, 3px 5px #ffffff, 3px 3px #ffffff, 2px 6px #000000, 3px 6px #000000, 4px 6px #000000, 4px 4px #000000, 4px 0px #000000, 3px 0px #000000, 3px 2px #000000, 2px 0px #000000, 1px 0px #000000, 1px 1px #ffffff, 3px 1px #ffffff, 2px 4px #ffffff, 2px 5px #ffffff, 1px 5px #ffffff, 4px 5px #ffffff, 5px 0px #000000, 5px 1px #000000, 5px 2px #000000, 4px 3px #000000, 3px 4px #000000, 5px 6px #000000, 5px 5px #000000, 1px 6px #000000, 0px 5px #000000, 1px 4px #000000, 2px 3px #000000, 2px 2px #000000, 1px 2px #000000, 0px 1px #000000, 0px 2px #000000, 0px 6px #000000, 5px 4px #000000;
+}
