@@ -1,6 +1,6 @@
 :root {
-    --zoom: 13;
-    --pixel-size: 13px;
+    --zoom: 12;
+    --pixel-size: 12px;
     --z-index-tree: 800;
     --z-index-boy: 900;
     --z-index-word: 950;
@@ -73,6 +73,24 @@ body {
     background: transparent;
     box-shadow: 5px 1px #518b41, 5px 2px #518b41, 4px 2px #518b41, 3px 2px #518b41, 4px 3px #518b41, 3px 4px #518b41, 3px 5px #518b41, 3px 6px #518b41, 2px 7px #518b41, 2px 8px #518b41, 6px 3px #518b41, 6px 4px #518b41, 5px 5px #518b41, 4px 5px #518b41, 4px 6px #518b41, 5px 3px #518b41, 6px 5px #518b41, 3px 7px #518b41, 4px 9px #518b41, 4px 8px #518b41, 5px 8px #518b41, 4px 7px #518b41, 6px 7px #518b41, 5px 6px #518b41, 7px 6px #518b41, 8px 8px #518b41, 5px 9px #9c6927, 5px 10px #9c6927, 5px 11px #9c6927, 7px 2px #76a348, 2px 5px #76a348, 4px 1px #76a348, 4px 4px #76a348, 7px 3px #268241, 7px 5px #268241, 5px 4px #268241, 6px 6px #268241, 7px 8px #268241, 9px 8px #268241, 5px 7px #268241, 5px 0px #268241, 6px 9px #268241, 6px 1px #227852, 7px 7px #227852, 6px 8px #227852, 6px 2px #1c6344, 8px 4px #1c6344, 8px 7px #1c6344, 8px 6px #1c6344, 7px 9px #1c6344, 7px 4px #227852, 3px 8px #76a348, 1px 8px #76a348, 6px 10px #75601a, 6px 11px #75601a;
 }
+.cactus:after {
+	box-shadow:
+	5px 10px #dbc465,5px 9px #dbc465,5px 7px #dbc465,5px 6px #dbc465,5px 5px #dbc465,5px 3px #dbc465,4px 7px #dbc465,3px 6px #dbc465,2px 5px #dbc465,2px 3px #dbc465,2px 4px #dbc465,5px 2px #dbc465,8px 2px #afb346,8px 3px #afb346,8px 4px #afb346,7px 5px #afb346,8px 8px #afb346,7px 9px #afb346,6px 7px #afb346,6px 10px #afb346,6px 1px #afb346,5px 11px #dbc465,5px 8px #dbc465,5px 4px #dbc465,6px 5px #afb346,6px 11px #afb346,6px 9px #afb346,6px 4px #afb346,6px 2px #afb346,6px 3px #dbc465,6px 8px #dbc465,6px 6px #dbc465;
+}
+
+.heart {
+    width: 9px;
+    height: 9px;
+}
+
+.heart:after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 1px;
+    background: transparent;
+    box-shadow: 1px 1px #942222, 0px 2px #942222, 0px 3px #942222, 0px 4px #942222, 1px 5px #942222, 2px 6px #942222, 3px 7px #942222, 4px 8px #942222, 2px 1px #942222, 1px 2px #942222, 4px 3px #e03434, 3px 3px #e03434, 3px 2px #e03434, 2px 2px #e03434, 1px 3px #e03434, 1px 4px #e03434, 2px 4px #e03434, 3px 4px #e03434, 3px 5px #e03434, 2px 5px #e03434, 3px 6px #e03434, 4px 7px #e03434, 5px 7px #e03434, 6px 6px #e03434, 2px 3px #e03434, 5px 6px #e03434, 4px 6px #e03434, 4px 5px #e03434, 4px 4px #e03434, 7px 5px #e03434, 8px 4px #e03434, 8px 3px #e03434, 5px 3px #e03434, 7px 4px #e03434, 6px 4px #e03434, 6px 5px #e03434, 5px 5px #e03434, 5px 4px #e03434, 5px 2px #e03434, 6px 1px #e03434, 8px 2px #e03434, 7px 1px #e03434, 7px 2px #e08484, 6px 3px #e08484, 7px 3px #e08484, 6px 2px #e08484;
+}
 
 .bird {
     width: 5px;
@@ -120,8 +138,7 @@ body {
 }
 
 .overlay {
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAKklEQVQoU2NkwA/+M1Ki4D9IMy4TwJK4FMAlsSlAkURXgCEJU4BVAuYGAP3dCAHUa45cAAAAAElFTkSuQmCC
-) repeat;
+    background: url('data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAKklEQVQoU2NkwA/+M1Ki4D9IMy4TwJK4FMAlsSlAkURXgCEJU4BVAuYGAP3dCAHUa45cAAAAAElFTkSuQmCC') repeat;
     background-size: var(--pixel-size);
     width: 100vw;
     height: 100vh;
@@ -131,7 +148,7 @@ body {
     bottom: 0;
     right: 0;
     opacity: 0.15;
-    background-position-y: 9px;
+    background-position-y: 0px;
     z-index: var(--z-index-overlay);
     pointer-events: none;
 }
@@ -147,10 +164,15 @@ body {
 
 .controller1 {
     left: calc(var(--pixel-size) * 10);
-    bottom: calc(var(--pixel-size) * 30);
+    bottom: calc(var(--pixel-size) * 25);
 }
 
 .controller2 {
     right: calc(var(--pixel-size) * 15);
+    bottom: calc(var(--pixel-size) * 25);
+}
+
+.p1-life {
+    left: calc(var(--pixel-size) * 1);
     bottom: calc(var(--pixel-size) * 30);
 }

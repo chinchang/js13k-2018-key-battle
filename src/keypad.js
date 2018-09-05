@@ -36,6 +36,7 @@ class Controller {
         }
         const el = this.el.querySelector('.alphabet');
         el.setAttribute('class', `alphabet alphabet-${String.fromCharCode(this.alphabet)}`);
+        play('coin');
     }
 }
 (function () {
