@@ -14,11 +14,23 @@ const timeColors = [
 	'hsl(214, 46%, 35%)',
 	'hsl(219, 48%, 13%)'
 ];
+const Colors = {
+	VICTORY: 'limegreen',
+	BOO: 'indianred'
+};
 let timeIndex = 0;
 let currentWord = '';
 const playerWords = ['', ''];
 const playerScores = [0, 0];
 const sounds = {};
+
+var synth = window.speechSynthesis;
+var utterThis = new SpeechSynthesisUtterance('');
+utterThis.rate = 4;
+function speak(word) {
+	utterThis.text = word;
+	synth.speak(utterThis);
+}
 
 function addSound(sid, list) {
 	sounds[sid] = [];
@@ -49,15 +61,16 @@ class Word {
 				]);
 				this.el.appendChild(charEl);
 			});
-		this.el.appendChild(createNode('div', ['pointer1']));
-		this.el.appendChild(createNode('div', ['pointer2']));
+		this.el.appendChild(createNode('div', ['pointer', 'pointer1']));
+		this.el.appendChild(createNode('div', ['pointer', 'pointer2']));
 
 		document.body.appendChild(this.el);
 		this.x = W / 2 - word.length * PIXEL_SIZE * 3.5;
 		this.y = 0;
-		this.width = this.el.getBoundingClientRect().width;
+		this.bounds = this.el.getBoundingClientRect();
 	}
 	destroy() {
+		this.isActive = false;
 		this.el.remove();
 	}
 	update() {
@@ -68,22 +81,12 @@ class Word {
 		this.y += PIXEL_SIZE;
 		if (this.y > H) {
 			this.isActive = false;
-			blast(
-				this.x + this.width / 2 + random(-this.width / 2, this.width / 2),
-				H
-			);
-			blast(
-				this.x + this.width / 2 + random(-this.width / 2, this.width / 2),
-				H
-			);
-			blast(
-				this.x + this.width / 2 + random(-this.width / 2, this.width / 2),
-				H
-			);
-			blast(
-				this.x + this.width / 2 + random(-this.width / 2, this.width / 2),
-				H
-			);
+			blastAround({
+				x: this.x,
+				y: this.y - this.bounds.height,
+				w: this.bounds.width,
+				h: this.bounds.height
+			});
 			play('explosion');
 		}
 	}
@@ -99,6 +102,7 @@ class Bird {
 		this.creationTime = Date.now();
 		this.x = 0;
 		this.y = 0;
+		this.speedX = random(3, 8);
 		var el = createNode('div', ['sprite', 'bird']);
 		document.body.appendChild(el);
 		this.el = el;
@@ -108,7 +112,7 @@ class Bird {
 			return;
 		}
 
-		this.x += 6;
+		this.x += this.speedX;
 		if (this.x > W) {
 			this.isActive = false;
 			this.el.remove();
@@ -149,7 +153,7 @@ class Cloud {
 }
 
 class Particle {
-	constructor(x, y) {
+	constructor(x, y, color = '#fff') {
 		this.isActive = true;
 		this.x = x;
 		this.y = y;
@@ -163,6 +167,8 @@ class Particle {
 		var el = createNode('div', ['particle']);
 		document.body.appendChild(el);
 		this.el = el;
+
+		this.el.style.backgroundColor = color;
 	}
 	update() {
 		if (!this.isActive) {
@@ -209,10 +215,17 @@ function createNode(tag, classes) {
 	return node;
 }
 
-function blast(x, y) {
+function blast(x, y, color) {
 	for (let i = 10; i--; ) {
-		const p = new Particle(x + random(-10, 10), y + random(-10, 10));
+		const p = new Particle(x + random(-10, 10), y + random(-10, 10), color);
 		sprites.push(p);
+	}
+}
+function blastAround({ x, y, w, h, color }) {
+	for (let i = 5; i--; ) {
+		setTimeout(() => {
+			blast(x + random(0, w), y + random(0, h), color);
+		}, random(0, 600));
 	}
 }
 
@@ -260,6 +273,8 @@ function checkWin() {
 		didWon = true;
 	}
 	if (didWon) {
+		play('coin');
+		speak('Player 1 gets 1 point');
 		playerWords[0] = playerWords[1] = '';
 		document.documentElement.style.setProperty(`--p1-pointer`, 0);
 		document.documentElement.style.setProperty(`--p2-pointer`, 0);
@@ -271,8 +286,11 @@ function startNewWord() {
 	if (currentWord) {
 		currentWord.destroy();
 	}
-	// const word = ['chang', 'halwa', 'top', 'cry', 'hop', 'amazing', 'helicopter'][~~(Math.random() * 7)]
-	const word = 'helicopter';
+	const word = ['chang', 'halwa', 'top', 'cry', 'hop', 'amazing', 'helicopter'][
+		~~(Math.random() * 7)
+	];
+	// const word = 'ab';
+	speak(`your new word is, ${word}`);
 	currentWord = new Word(word.toLowerCase());
 	sprites.push(currentWord);
 }
@@ -302,6 +320,24 @@ function init() {
 				`--p${e.playerId + 1}-pointer`,
 				playerWords[e.playerId].length
 			);
+			const winnerBounds = window[`p${e.playerId + 1}`].getBoundingClientRect();
+			const looserBounds = window[
+				`p${(e.playerId ^ 1) + 1}`
+			].getBoundingClientRect();
+			blastAround({
+				x: winnerBounds.left,
+				y: winnerBounds.top,
+				w: winnerBounds.width,
+				h: winnerBounds.height,
+				color: Colors.VICTORY
+			});
+			blastAround({
+				x: looserBounds.left,
+				y: looserBounds.top,
+				w: looserBounds.width,
+				h: looserBounds.height,
+				color: Colors.BOO
+			});
 		} else {
 			play('damage');
 		}

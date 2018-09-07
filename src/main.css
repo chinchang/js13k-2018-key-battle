@@ -162,7 +162,7 @@ body {
 }
 
 .word {
-    display: flex;
+    display: inline-flex;
     z-index: var(--z-index-word);
 }
 
@@ -193,25 +193,35 @@ body {
     position: relative;
 }
 
-.pointer1,
-.pointer2 {
+.pointer {
     position: absolute;
     top: -6px;
     font-size: 4px;
+    width: 5px;
+    height: 5px;
+    transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .pointer1 {
-    left: calc(var(--p1-pointer) * 7px + 1px);
+    left: calc(var(--p1-pointer) * 7px + 0.3px);
 }
 
 .pointer2 {
-    left: calc(var(--p2-pointer) * 7px + 1px);
+    left: calc(var(--p2-pointer) * 7px + 1.5px);
 }
 
-.pointer1:after {
-    content: '🔽';
+.pointer1:after,
+.pointer2:after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 1px;
+    background: rgb(0, 0, 0);
+    box-shadow:
+        2px 3px #000000, 3px 2px #000000, 1px 1px #e58400, 2px 1px #e58400, 3px 1px #e58400, 2px 2px #e58400, 4px 1px #000000, 4px 0px #000000, 3px 0px #000000, 2px 0px #000000, 1px 0px #000000, 0px 1px #000000, 1px 2px #000000;
 }
 
 .pointer2:after {
-    content: '⬇️';
+    box-shadow:
+        2px 3px #000000, 3px 2px #000000, 4px 1px #000000, 4px 0px #000000, 3px 0px #000000, 2px 0px #000000, 1px 0px #000000, 0px 1px #000000, 1px 2px #000000, 1px 1px #8792f3, 3px 1px #8792f3, 2px 1px #8792f3, 2px 2px #8792f3;
 }
