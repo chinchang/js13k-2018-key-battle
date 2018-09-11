@@ -1,0 +1,64 @@
+.number {
+    width: 7px;
+    height: 7px;
+}
+
+.number:after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 1px;
+    background: transparent;
+}
+
+
+.number-0:after {
+    box-shadow:
+        5px 0px #000000, 5px 5px #ffffff, 4px 6px #000000, 5px 6px #000000, 6px 6px #000000, 6px 5px #000000, 6px 3px #000000, 6px 2px #000000, 6px 1px #000000, 6px 0px #000000, 5px 2px #ffffff, 5px 1px #ffffff, 5px 3px #ffffff, 5px 4px #ffffff, 6px 4px #000000, 4px 4px #000000, 4px 3px #000000, 4px 0px #000000, 4px 1px #ffffff, 4px 2px #000000, 3px 0px #000000, 3px 1px #ffffff, 3px 2px #ffffff, 3px 3px #ffffff, 3px 4px #ffffff, 3px 5px #ffffff, 4px 5px #ffffff, 3px 6px #000000, 2px 6px #000000, 2px 5px #000000, 2px 4px #000000, 2px 3px #000000, 2px 2px #000000, 2px 1px #000000, 2px 0px #000000;
+}
+
+.number-1:after {
+    box-shadow:
+        5px 0px #000000, 5px 5px #ffffff, 4px 6px #000000, 5px 6px #000000, 6px 6px #000000, 6px 5px #000000, 6px 3px #000000, 6px 2px #000000, 6px 1px #000000, 6px 0px #000000, 5px 2px #ffffff, 5px 1px #ffffff, 5px 3px #ffffff, 5px 4px #ffffff, 6px 4px #000000, 4px 5px #000000, 4px 4px #000000, 4px 3px #000000, 3px 2px #000000, 3px 1px #000000, 4px 0px #000000, 4px 1px #ffffff, 4px 2px #000000, 3px 0px #000000;
+}
+
+.number-2:after {
+    box-shadow:
+        4px 0px #000000, 3px 0px #000000, 5px 0px #000000, 3px 2px #000000, 4px 1px #ffffff, 3px 1px #ffffff, 4px 3px #ffffff, 3px 3px #ffffff, 5px 5px #ffffff, 3px 5px #ffffff, 4px 2px #000000, 4px 4px #000000, 3px 6px #000000, 4px 6px #000000, 5px 6px #000000, 6px 6px #000000, 6px 5px #000000, 6px 3px #000000, 6px 2px #000000, 6px 1px #000000, 6px 0px #000000, 5px 2px #ffffff, 5px 1px #ffffff, 5px 3px #ffffff, 3px 4px #ffffff, 4px 5px #ffffff, 2px 0px #000000, 2px 1px #000000, 2px 3px #000000, 2px 4px #000000, 2px 5px #000000, 2px 6px #000000, 5px 4px #000000;
+}
+
+.number-3:after {
+    box-shadow:
+        4px 0px #000000, 3px 0px #000000, 5px 0px #000000, 3px 2px #000000, 4px 1px #ffffff, 3px 1px #ffffff, 2px 0px #000000, 2px 5px #000000, 4px 3px #ffffff, 3px 3px #ffffff, 5px 1px #ffffff, 5px 2px #ffffff, 5px 3px #ffffff, 5px 4px #ffffff, 5px 5px #ffffff, 3px 5px #ffffff, 4px 5px #ffffff, 2px 1px #000000, 4px 2px #000000, 4px 4px #000000, 3px 4px #000000, 2px 6px #000000, 3px 6px #000000, 4px 6px #000000, 5px 6px #000000, 6px 6px #000000, 6px 5px #000000, 6px 4px #000000, 6px 3px #000000, 6px 2px #000000, 6px 1px #000000, 6px 0px #000000, 2px 3px #000000;
+
+}
+
+.number-4:after {
+    box-shadow:
+        5px 0px #000000, 5px 5px #ffffff, 5px 6px #000000, 6px 6px #000000, 6px 5px #000000, 6px 3px #000000, 6px 2px #000000, 6px 1px #000000, 6px 0px #000000, 5px 2px #ffffff, 5px 1px #ffffff, 5px 3px #ffffff, 5px 4px #ffffff, 6px 4px #000000, 4px 4px #000000, 4px 0px #000000, 4px 2px #000000, 3px 0px #000000, 3px 1px #ffffff, 3px 2px #ffffff, 3px 3px #ffffff, 4px 3px #ffffff, 4px 6px #000000, 4px 5px #000000, 3px 4px #000000, 2px 4px #000000, 2px 3px #000000, 2px 2px #000000, 2px 1px #000000, 2px 0px #000000, 4px 1px #000000;
+}
+
+.number-5:after {
+    box-shadow:
+        5px 0px #000000, 5px 5px #ffffff, 5px 6px #000000, 6px 6px #000000, 6px 5px #000000, 6px 3px #000000, 6px 1px #000000, 6px 0px #000000, 5px 1px #ffffff, 5px 3px #ffffff, 5px 4px #ffffff, 6px 4px #000000, 4px 4px #000000, 4px 0px #000000, 4px 2px #000000, 3px 0px #000000, 3px 1px #ffffff, 3px 2px #ffffff, 3px 3px #ffffff, 4px 3px #ffffff, 4px 6px #000000, 3px 4px #000000, 2px 3px #000000, 2px 2px #000000, 2px 1px #000000, 2px 0px #000000, 4px 1px #ffffff, 4px 5px #ffffff, 3px 5px #ffffff, 3px 6px #000000, 2px 6px #000000, 2px 5px #000000, 5px 2px #000000;
+}
+
+.number-6:after {
+    box-shadow:
+        5px 0px #000000, 5px 5px #ffffff, 5px 6px #000000, 6px 6px #000000, 6px 5px #000000, 6px 3px #000000, 6px 1px #000000, 6px 0px #000000, 5px 1px #ffffff, 5px 3px #ffffff, 5px 4px #ffffff, 6px 4px #000000, 4px 4px #000000, 4px 0px #000000, 4px 2px #000000, 3px 0px #000000, 3px 1px #ffffff, 3px 2px #ffffff, 3px 3px #ffffff, 4px 3px #ffffff, 4px 6px #000000, 2px 3px #000000, 2px 2px #000000, 2px 1px #000000, 2px 0px #000000, 4px 1px #ffffff, 4px 5px #ffffff, 3px 5px #ffffff, 3px 6px #000000, 2px 6px #000000, 2px 5px #000000, 5px 2px #000000, 3px 4px #ffffff, 2px 4px #000000;
+}
+
+.number-7:after {
+    box-shadow:
+        5px 0px #000000, 5px 5px #ffffff, 5px 6px #000000, 6px 6px #000000, 6px 5px #000000, 6px 3px #000000, 6px 1px #000000, 6px 0px #000000, 5px 1px #ffffff, 5px 3px #ffffff, 5px 4px #ffffff, 6px 4px #000000, 4px 0px #000000, 4px 2px #000000, 3px 0px #000000, 3px 1px #ffffff, 4px 6px #000000, 2px 1px #000000, 2px 0px #000000, 4px 1px #ffffff, 5px 2px #ffffff, 6px 2px #000000, 4px 5px #000000, 4px 4px #000000, 4px 3px #000000, 3px 2px #000000, 2px 2px #000000;
+}
+
+.number-8:after {
+    box-shadow:
+        5px 0px #000000, 5px 5px #ffffff, 5px 6px #000000, 6px 6px #000000, 6px 5px #000000, 6px 3px #000000, 6px 1px #000000, 6px 0px #000000, 5px 1px #ffffff, 5px 3px #ffffff, 5px 4px #ffffff, 6px 4px #000000, 4px 0px #000000, 4px 2px #000000, 3px 0px #000000, 3px 1px #ffffff, 4px 6px #000000, 2px 1px #000000, 2px 0px #000000, 4px 1px #ffffff, 5px 2px #ffffff, 6px 2px #000000, 4px 4px #000000, 2px 2px #000000, 3px 2px #ffffff, 3px 3px #ffffff, 4px 3px #ffffff, 4px 5px #ffffff, 3px 5px #ffffff, 3px 4px #ffffff, 2px 3px #000000, 2px 5px #000000, 2px 6px #000000, 3px 6px #000000, 2px 4px #000000;
+}
+
+.number-9:after {
+    box-shadow:
+        5px 0px #000000, 5px 5px #ffffff, 5px 6px #000000, 6px 6px #000000, 6px 5px #000000, 6px 3px #000000, 6px 1px #000000, 6px 0px #000000, 5px 1px #ffffff, 5px 3px #ffffff, 5px 4px #ffffff, 6px 4px #000000, 4px 0px #000000, 4px 2px #000000, 3px 0px #000000, 3px 1px #ffffff, 4px 6px #000000, 2px 1px #000000, 2px 0px #000000, 4px 1px #ffffff, 5px 2px #ffffff, 6px 2px #000000, 4px 4px #000000, 2px 2px #000000, 3px 2px #ffffff, 3px 3px #ffffff, 4px 3px #ffffff, 4px 5px #ffffff, 3px 5px #ffffff, 2px 3px #000000, 2px 5px #000000, 2px 6px #000000, 3px 6px #000000, 3px 4px #000000;
+}

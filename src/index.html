@@ -8,16 +8,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" media="screen" href="main.css" />
         <link rel="stylesheet" media="screen" href="alphabets.css" />
+        <link rel="stylesheet" media="screen" href="numbers.css" />
     </head>
 
     <body>
 
         <div id="p1" class="sprite boy"></div>
         <div id="p2" class="sprite boy c2"></div>
-        <div class="sprite p1-life">
-            <div class="heart"></div>
-            <div class="heart"></div>
-            <div class="heart"></div>
+        <div class="sprite p1-score">
+            <div id="p1ScoreEl" class="number number-0"></div>
+        </div>
+        <div class="sprite p2-score">
+            <div id="p2ScoreEl" class="number number-0"></div>
         </div>
         <controller id="0" class="controller1" leftKey="97" rightKey="100" enterkey="115"></controller>
         <controller id="1" class="controller2" leftKey="106" rightKey="108" enterkey="107"></controller>

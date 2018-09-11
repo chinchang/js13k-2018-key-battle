@@ -233,12 +233,12 @@ function update() {
 	if (Math.random() < 0.005) {
 		incrementTime();
 	}
-	if (Math.random() < 0.015) {
+	if (Math.random() < 0.01) {
 		const b = new Bird();
 		b.y = `calc(var(--pixel-size) * ${random(15, 80)})`;
 		sprites.push(b);
 	}
-	if (Math.random() < 0.005) {
+	if (Math.random() < 0.003) {
 		const b = new Cloud();
 		b.y = `calc(var(--pixel-size) * ${random(5, 80)})`;
 		sprites.push(b);
@@ -266,11 +266,13 @@ function checkWin() {
 	if (playerWords[0] === currentWord.word) {
 		console.log('PLAYER 1 WON');
 		playerScores[0]++;
+		p1ScoreEl.setAttribute('class', `number number-${playerScores[0]}`);
 		didWon = true;
 	} else if (playerWords[1] === currentWord.word) {
 		console.log('PLAYER 2 WON');
 		playerScores[1]++;
-		didWon = true;
+		didWp1ScoreEl.setAttribute('class', `number number-${playerScores[1]}`);
+		on = true;
 	}
 	if (didWon) {
 		play('coin');
