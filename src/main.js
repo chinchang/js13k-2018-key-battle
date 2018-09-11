@@ -271,8 +271,8 @@ function checkWin() {
 	} else if (playerWords[1] === currentWord.word) {
 		console.log('PLAYER 2 WON');
 		playerScores[1]++;
-		didWp1ScoreEl.setAttribute('class', `number number-${playerScores[1]}`);
-		on = true;
+		p1ScoreEl.setAttribute('class', `number number-${playerScores[1]}`);
+		didWon = true;
 	}
 	if (didWon) {
 		play('coin');
