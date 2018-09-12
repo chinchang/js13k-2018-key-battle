@@ -1,4 +1,4 @@
-const wordList = [
+let wordList = [
 	'Adult',
 	'Aeroplane',
 	'Air',

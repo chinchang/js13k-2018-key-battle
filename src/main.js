@@ -61,22 +61,15 @@ class Word {
 	constructor(word) {
 		this.isActive = true;
 		this.word = word;
-		this.el = createNode('div', ['sprite', 'word']);
+		var sentence = document.createElement('Sentence');
+		sentence.setAttribute('word', word);
+		sentence.setAttribute('classes', 'sprite');
+		stageEl.appendChild(sentence);
+		this.el = compile('Sentence')[0];
 
-		word
-			.toLowerCase()
-			.split('')
-			.forEach(char => {
-				const charEl = createNode('div', [
-					'alphabet',
-					`alphabet-${char === ' ' ? '' : char}`
-				]);
-				this.el.appendChild(charEl);
-			});
 		this.el.appendChild(createNode('div', ['pointer', 'pointer-1']));
 		this.el.appendChild(createNode('div', ['pointer', 'pointer-2']));
 
-		stageEl.appendChild(this.el);
 		this.x = W / 2 - word.length * 3;
 		this.y = 0;
 		this.bounds = this.el.getBoundingClientRect();
@@ -345,6 +338,7 @@ function gameTypeBtnClickHandler(e) {
 
 function compile(className) {
 	const targets = document.querySelectorAll(className);
+	const compiledElements = [];
 	targets.forEach(target => {
 		const props = [...target.attributes].reduce((value, current) => {
 			value[current.name] = current.value;
@@ -360,8 +354,10 @@ function compile(className) {
 		);
 		target.previousElementSibling.remove();
 		new compilableClasses[className](target.previousElementSibling, props);
+		compiledElements.push(target.previousElementSibling);
 		target.remove();
 	});
+	return compiledElements;
 }
 
 function changeGameState(state) {
