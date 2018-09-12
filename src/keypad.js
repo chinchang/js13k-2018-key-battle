@@ -6,6 +6,19 @@ class Controller {
 		this.alphabet = 97;
 		this.lastKeypressTime = Date.now();
 		window.addEventListener('keypress', e => {
+			if (gameState === GameStates.TYPE_1_GAME) {
+				// because its 1 player game
+				if (+this.props.id === 1) {
+					return;
+				}
+				const event = new Event('controllerinput');
+				event.letter = String.fromCharCode(e.which);
+				event.playerId = +this.props.id;
+				window.dispatchEvent(event);
+				this.cycleAlphabet(String.fromCharCode(e.which));
+
+				return;
+			}
 			if (e.which === +this.props.enterkey) {
 				const event = new Event('controllerinput');
 				event.letter = String.fromCharCode(this.alphabet);
@@ -30,7 +43,7 @@ class Controller {
             </div>
         `;
 	}
-	cycleAlphabet(diff) {
+	cycleAlphabet(diff, targetAlphabet) {
 		this.alphabet += diff;
 		if (this.alphabet > 122) {
 			this.alphabet = 97;
@@ -41,31 +54,10 @@ class Controller {
 		const el = this.el.querySelector('.alphabet');
 		el.setAttribute(
 			'class',
-			`alphabet alphabet-${String.fromCharCode(this.alphabet)}`
+			`alphabet alphabet-${targetAlphabet ||
+				String.fromCharCode(this.alphabet)}`
 		);
 		// play('button');
 	}
 }
-(function() {
-	const TAG = 'controller';
-
-	function init(props) {
-		const targets = document.querySelectorAll(TAG);
-		targets.forEach(target => {
-			const props = [...target.attributes].reduce((value, current) => {
-				value[current.name] = current.value;
-				return value;
-			}, {});
-			target.parentElement.insertBefore(document.createElement('div'), target);
-			target.previousElementSibling.innerHTML = Controller.render(props);
-			target.parentElement.insertBefore(
-				target.previousElementSibling.children[0],
-				target.previousElementSibling
-			);
-			target.previousElementSibling.remove();
-			const instance = new Controller(target.previousElementSibling, props);
-			target.remove();
-		});
-	}
-	init();
-})();
+registerCompilableClass(Controller);
