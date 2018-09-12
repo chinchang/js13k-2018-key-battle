@@ -275,7 +275,7 @@ function startNewWord() {
 	if (currentWord) {
 		currentWord.destroy();
 	}
-	const word = wordList[~~(Math.random() * wordList.length)];
+	const word = wordList[random(0, wordList.length)];
 	// const word = 'ab';
 	speak(`your new word is, ${word}`);
 	currentWord = new Word(word.toLowerCase());
@@ -288,6 +288,8 @@ function startNewWord() {
 function startGame(type) {
 	document.documentElement.style.setProperty(`--p1-pointer`, 0);
 	document.documentElement.style.setProperty(`--p2-pointer`, 0);
+	wordList = wordList.sort((a, b) => (Math.random() > 0.5 ? 1 : -1));
+
 	if (type === 0) {
 		changeGameState(GameStates.TYPE_1_GAME);
 	} else {
