@@ -141,8 +141,6 @@ body {
     --s2: #687ae1;
     --p1: #e68fd2;
     --p2: #c27ac4;
-
-    animation: player 1s steps(1) infinite alternate;
 }
 
 .tree {
@@ -150,7 +148,6 @@ body {
     height: 12px;
     bottom: 0;
     z-index: var(--z-index-tree);
-    /* transform: scale(calc(var(--zoom) * 0.05)); */
 }
 
 .tree:after {
@@ -165,20 +162,6 @@ body {
 .cactus:after {
     box-shadow:
         5px 10px #dbc465, 5px 9px #dbc465, 5px 7px #dbc465, 5px 6px #dbc465, 5px 5px #dbc465, 5px 3px #dbc465, 4px 7px #dbc465, 3px 6px #dbc465, 2px 5px #dbc465, 2px 3px #dbc465, 2px 4px #dbc465, 5px 2px #dbc465, 8px 2px #afb346, 8px 3px #afb346, 8px 4px #afb346, 7px 5px #afb346, 8px 8px #afb346, 7px 9px #afb346, 6px 7px #afb346, 6px 10px #afb346, 6px 1px #afb346, 5px 11px #dbc465, 5px 8px #dbc465, 5px 4px #dbc465, 6px 5px #afb346, 6px 11px #afb346, 6px 9px #afb346, 6px 4px #afb346, 6px 2px #afb346, 6px 3px #dbc465, 6px 8px #dbc465, 6px 6px #dbc465;
-}
-
-.heart {
-    width: 9px;
-    height: 9px;
-}
-
-.heart:after {
-    content: '';
-    display: block;
-    width: 1px;
-    height: 1px;
-    background: transparent;
-    box-shadow: 1px 1px #942222, 0px 2px #942222, 0px 3px #942222, 0px 4px #942222, 1px 5px #942222, 2px 6px #942222, 3px 7px #942222, 4px 8px #942222, 2px 1px #942222, 1px 2px #942222, 4px 3px #e03434, 3px 3px #e03434, 3px 2px #e03434, 2px 2px #e03434, 1px 3px #e03434, 1px 4px #e03434, 2px 4px #e03434, 3px 4px #e03434, 3px 5px #e03434, 2px 5px #e03434, 3px 6px #e03434, 4px 7px #e03434, 5px 7px #e03434, 6px 6px #e03434, 2px 3px #e03434, 5px 6px #e03434, 4px 6px #e03434, 4px 5px #e03434, 4px 4px #e03434, 7px 5px #e03434, 8px 4px #e03434, 8px 3px #e03434, 5px 3px #e03434, 7px 4px #e03434, 6px 4px #e03434, 6px 5px #e03434, 5px 5px #e03434, 5px 4px #e03434, 5px 2px #e03434, 6px 1px #e03434, 8px 2px #e03434, 7px 1px #e03434, 7px 2px #e08484, 6px 3px #e08484, 7px 3px #e08484, 6px 2px #e08484;
 }
 
 .bird {
