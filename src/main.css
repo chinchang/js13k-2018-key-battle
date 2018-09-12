@@ -278,11 +278,11 @@ body {
 }
 
 .pointer-1 {
-    left: calc(var(--p1-pointer) * 7px + 0.3px);
+    left: calc(var(--p1-pointer) * 6px + -0.7px);
 }
 
 .pointer-2 {
-    left: calc(var(--p2-pointer) * 7px + 1.5px);
+    left: calc(var(--p2-pointer) * 6px + 0.5px);
 }
 
 .pointer-1:after,
@@ -316,7 +316,7 @@ body {
 
 .type-1-help,
 .type-2-help {
-    transform: scale(0.5);
+    line-height: 0.7;
     visibility: hidden;
 }
 

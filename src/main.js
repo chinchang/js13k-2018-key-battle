@@ -277,7 +277,7 @@ function startNewWord() {
 	}
 	const word = wordList[random(0, wordList.length)];
 	// const word = 'ab';
-	speak(`your new word is, ${word}`);
+	speak(`new word is, ${word}`);
 	currentWord = new Word(word.toLowerCase());
 	sprites.push(currentWord);
 }
