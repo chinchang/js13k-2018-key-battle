@@ -1,0 +1,17 @@
+{
+  "name": "js13kgames-2018",
+  "version": "1.0.0",
+  "description": "My game entry for js13kgames 2018 compo",
+  "main": "index.js",
+  "repository": "git@github.com:chinchang/js13k-2018.git",
+  "author": "Kushagra Gour <chinchang457@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "babel-minify": "^0.4.3",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.10.0",
+    "gulp-useref": "^3.1.5",
+    "run-sequence": "^2.2.1"
+  }
+}
