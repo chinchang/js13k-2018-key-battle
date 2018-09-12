@@ -227,7 +227,7 @@ a {
     bottom: 0;
     right: 0;
     opacity: 0.15;
-    background-position-y: 0px;
+    background-position-y: 3px;
     z-index: var(--z-index-overlay);
     pointer-events: none;
 }
