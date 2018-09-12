@@ -196,13 +196,13 @@ function createNode(tag, classes) {
 }
 
 function blast(x, y, color) {
-	for (let i = 10; i--; ) {
+	for (let i = 6; i--; ) {
 		const p = new Particle(x + random(-10, 10), y + random(-10, 10), color);
 		sprites.push(p);
 	}
 }
 function blastAround({ left, top, width, height }, color) {
-	for (let i = 5; i--; ) {
+	for (let i = 4; i--; ) {
 		setTimeout(() => {
 			blast(left + random(0, width), top + random(0, height), color);
 		}, random(0, 600));
@@ -296,6 +296,7 @@ function startGame(type) {
 		changeGameState(GameStates.TYPE_2_GAME);
 	}
 	playerScores[0] = playerScores[1] = 0;
+	playerWords[0] = playerWords[1] = '';
 	updateScoreUi();
 
 	startNewWord();
