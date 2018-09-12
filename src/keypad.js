@@ -15,7 +15,7 @@ class Controller {
 				event.letter = String.fromCharCode(e.which);
 				event.playerId = +this.props.id;
 				window.dispatchEvent(event);
-				this.cycleAlphabet(String.fromCharCode(e.which));
+				this.cycleAlphabet(0, String.fromCharCode(e.which));
 
 				return;
 			}

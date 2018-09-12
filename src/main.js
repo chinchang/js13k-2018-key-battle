@@ -72,7 +72,6 @@ class Word {
 
 		this.x = W / 2 - word.length * 3;
 		this.y = 0;
-		this.bounds = this.el.getBoundingClientRect();
 		this.w = this.el.offsetWidth;
 		this.h = this.el.offsetHeight;
 	}
@@ -89,12 +88,7 @@ class Word {
 		if (this.y + this.h > H) {
 			this.isActive = false;
 			const bounds = this.el.getBoundingClientRect();
-			blastAround({
-				x: bounds.left,
-				y: bounds.top,
-				w: bounds.width,
-				h: bounds.height
-			});
+			blastAround(bounds);
 			play('explosion');
 
 			if (gameState === GameStates.TYPE_1_GAME) {
@@ -111,15 +105,14 @@ class Word {
 		this.el.style.top = `${this.y}px`;
 	}
 }
-class Bird {
-	// isActive: true;
-	constructor() {
+class Ufo {
+	constructor(type) {
 		this.isActive = true;
 		this.creationTime = Date.now();
 		this.x = 0;
 		this.y = 0;
-		this.speedX = random(2, 5);
-		var el = createNode('div', ['sprite', 'bird']);
+		this.speedX = type === 'bird' ? random(1, 3) : random(1, 2);
+		var el = createNode('div', ['sprite', type]);
 		stageEl.appendChild(el);
 		this.el = el;
 	}
@@ -136,35 +129,7 @@ class Bird {
 	}
 	render() {
 		this.el.style.left = `${pixelize(this.x)}px`;
-		this.el.style.bottom = `${this.y}`;
-	}
-}
-
-class Cloud {
-	// isActive: true;
-	constructor() {
-		this.isActive = true;
-		this.creationTime = Date.now();
-		this.x = 0;
-		this.y = 0;
-		var el = createNode('div', ['sprite', 'cloud']);
-		stageEl.appendChild(el);
-		this.el = el;
-	}
-	update() {
-		if (!this.isActive) {
-			return;
-		}
-
-		this.x += random(1, 3);
-		if (this.x > W) {
-			this.isActive = false;
-			this.el.remove();
-		}
-	}
-	render() {
-		this.el.style.left = `${pixelize(this.x)}px`;
-		this.el.style.bottom = `${this.y}`;
+		this.el.style.bottom = `${this.y}px`;
 	}
 }
 
@@ -236,12 +201,10 @@ function blast(x, y, color) {
 		sprites.push(p);
 	}
 }
-function blastAround({ x, y, w, h, color }) {
-	// x *= PIXEL_SIZE;
-	// y *= PIXEL_SIZE;
+function blastAround({ left, top, width, height }, color) {
 	for (let i = 5; i--; ) {
 		setTimeout(() => {
-			blast(x + random(0, w), y + random(0, h), color);
+			blast(left + random(0, width), top + random(0, height), color);
 		}, random(0, 600));
 	}
 }
@@ -252,12 +215,12 @@ function update() {
 			incrementTime();
 		}
 		if (Math.random() < 0.01) {
-			const b = new Bird();
+			const b = new Ufo('bird');
 			b.y = random(15, H);
 			sprites.push(b);
 		}
 		if (Math.random() < 0.003) {
-			const b = new Cloud();
+			const b = new Ufo('cloud');
 			b.y = random(5, H);
 			sprites.push(b);
 		}
@@ -293,12 +256,14 @@ function checkWin() {
 		didWon = 1;
 	}
 	if (didWon !== false) {
-		console.log(`PLAYER ${didWon + 1} WON`);
 		playerScores[didWon]++;
 		updateScoreUi();
 
 		play('coin');
-		speak(`Player ${didWon + 1} gets 1 point`);
+
+		if (gameState === GameStates.TYPE_2_GAME) {
+			speak(`Player ${didWon + 1} gets 1 point`);
+		}
 		playerWords[0] = playerWords[1] = '';
 		document.documentElement.style.setProperty(`--p1-pointer`, 0);
 		document.documentElement.style.setProperty(`--p2-pointer`, 0);
@@ -318,9 +283,11 @@ function startNewWord() {
 }
 /**
  *
- * @param {numbre} type Type 0 is 1player and 1 is 2 player
+ * @param {number} type Type 0 is 1player and 1 is 2 player
  */
 function startGame(type) {
+	document.documentElement.style.setProperty(`--p1-pointer`, 0);
+	document.documentElement.style.setProperty(`--p2-pointer`, 0);
 	if (type === 0) {
 		changeGameState(GameStates.TYPE_1_GAME);
 	} else {
@@ -387,7 +354,11 @@ function init() {
 			gameState === GameStates.TYPE_SELECTION &&
 			(e.which === 38 || e.which === 40)
 		) {
-			if (document.activeElement.nextElementSibling.tagName === 'BUTTON') {
+			if (!document.activeElement) {
+				document.querySelector('button').focus();
+			} else if (
+				document.activeElement.nextElementSibling.tagName === 'BUTTON'
+			) {
 				document.activeElement.nextElementSibling.focus();
 			} else {
 				document.activeElement.previousElementSibling.focus();
@@ -413,33 +384,15 @@ function init() {
 				`p${(e.playerId ^ 1) + 1}`
 			].getBoundingClientRect();
 			if (gameState !== GameStates.TYPE_1_GAME || e.playerId === 0) {
-				blastAround({
-					x: winnerBounds.left,
-					y: winnerBounds.top,
-					w: winnerBounds.width,
-					h: winnerBounds.height,
-					color: Colors.VICTORY
-				});
+				blastAround(winnerBounds, Colors.VICTORY);
 			}
 			if (gameState === GameStates.TYPE_2_GAME) {
-				blastAround({
-					x: looserBounds.left,
-					y: looserBounds.top,
-					w: looserBounds.width,
-					h: looserBounds.height,
-					color: Colors.BOO
-				});
+				blastAround(looserBounds, Colors.BOO);
 			}
 		} else {
 			play('damage');
 			const looserBounds = window[`p${e.playerId + 1}`].getBoundingClientRect();
-			blastAround({
-				x: looserBounds.left,
-				y: looserBounds.top,
-				w: looserBounds.width,
-				h: looserBounds.height,
-				color: Colors.BOO
-			});
+			blastAround(looserBounds, Colors.BOO);
 		}
 		checkWin();
 	});
