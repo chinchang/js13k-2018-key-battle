@@ -92,7 +92,7 @@ class Word {
 			return;
 		}
 
-		this.y += 1;
+		this.y += 0.5;
 		if (this.y + this.h > H) {
 			this.isActive = false;
 			const bounds = this.el.getBoundingClientRect();
@@ -103,6 +103,14 @@ class Word {
 				h: bounds.height
 			});
 			play('explosion');
+
+			if (gameState === GameStates.TYPE_1_GAME) {
+				// gameover
+				changeGameState(GameStates.TYPE_SELECTION);
+				setTimeout(() => {
+					this.destroy();
+				}, 2000);
+			}
 		}
 	}
 	render() {
@@ -279,6 +287,11 @@ function loop() {
 	render();
 }
 
+function updateScoreUi() {
+	p1ScoreEl.setAttribute('class', `number number-${playerScores[0]}`);
+	p2ScoreEl.setAttribute('class', `number number-${playerScores[1]}`);
+}
+
 function checkWin() {
 	var didWon = false;
 	if (playerWords[0] === currentWord.word) {
@@ -289,10 +302,8 @@ function checkWin() {
 	if (didWon !== false) {
 		console.log(`PLAYER ${didWon + 1} WON`);
 		playerScores[didWon]++;
-		window[`p${didWon + 1}ScoreEl`].setAttribute(
-			'class',
-			`number number-${playerScores[didWon]}`
-		);
+		updateScoreUi();
+
 		play('coin');
 		speak(`Player ${didWon + 1} gets 1 point`);
 		playerWords[0] = playerWords[1] = '';
@@ -306,9 +317,7 @@ function startNewWord() {
 	if (currentWord) {
 		currentWord.destroy();
 	}
-	const word = ['chang', 'halwa', 'top', 'cry', 'hop', 'amazing', 'helicopter'][
-		~~(Math.random() * 7)
-	];
+	const word = wordList[~~(Math.random() * wordList.length)];
 	// const word = 'ab';
 	speak(`your new word is, ${word}`);
 	currentWord = new Word(word.toLowerCase());
@@ -324,6 +333,9 @@ function startGame(type) {
 	} else {
 		changeGameState(GameStates.TYPE_2_GAME);
 	}
+	playerScores[0] = playerScores[1] = 0;
+	updateScoreUi();
+
 	startNewWord();
 }
 function gameTypeBtnClickHandler(e) {
