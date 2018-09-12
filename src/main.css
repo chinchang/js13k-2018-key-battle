@@ -17,14 +17,21 @@ body {
     overflow: hidden;
     margin: 0;
     background-color: #111;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+a {
+    color: inherit;
 }
 
 .stage-wrap {
     width: 100vw;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    color: #fefefe;
 }
 
 .stage {
@@ -227,6 +234,7 @@ body {
 
 .word {
     display: inline-flex;
+    display: flex;
     z-index: var(--z-index-word);
 }
 
@@ -299,8 +307,9 @@ body {
 
 .type-1-help,
 .type-2-help {
+    margin-top: 2px;
     line-height: 0.7;
-    visibility: hidden;
+    display: none;
 }
 
 /*  GAME STATES */
@@ -331,6 +340,10 @@ body {
 
 }
 
-.btn[data-type="1"]:focus+.type-2-help {
-    visibility: visible;
+.btn[data-type="0"]:focus~.type-1-help {
+    display: block;
+}
+
+.btn[data-type="1"]:focus~.type-2-help {
+    display: block;
 }

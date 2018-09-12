@@ -8,6 +8,7 @@ const W = ~~(window.innerWidth / 7);
 const H = ~~(Math.min(500, window.innerHeight) / 7);
 stageEl.style.width = `${W}px`;
 stageEl.style.height = `${H}px`;
+stageEl.style.marginBottom = `${(H / 2) * PIXEL_SIZE}px`;
 const TREE_COUNT = 10;
 const timeColors = [
 	'hsl(50, 69%, 61%)',
@@ -16,6 +17,8 @@ const timeColors = [
 	'hsl(214, 46%, 35%)',
 	'hsl(219, 48%, 13%)'
 ];
+let wordLevel = 0;
+let wordSpeed = 0.5;
 const Colors = {
 	VICTORY: 'limegreen',
 	BOO: 'indianred'
@@ -84,7 +87,7 @@ class Word {
 			return;
 		}
 
-		this.y += 0.5;
+		this.y += wordSpeed;
 		if (this.y + this.h > H) {
 			this.isActive = false;
 			const bounds = this.el.getBoundingClientRect();
@@ -270,12 +273,22 @@ function checkWin() {
 		startNewWord();
 	}
 }
+function handleWordSpeed() {
+	if (wordLevel > 8) {
+		wordSpeed = 1.3;
+	} else if (wordLevel > 5) {
+		wordSpeed = 0.9;
+	} else {
+		wordSpeed = 0.5;
+	}
+}
 
 function startNewWord() {
 	if (currentWord) {
 		currentWord.destroy();
 	}
-	const word = wordList[random(0, wordList.length)];
+	const word = wordList[wordLevel++];
+	handleWordSpeed();
 	// const word = 'ab';
 	speak(`new word is, ${word}`);
 	currentWord = new Word(word.toLowerCase());
@@ -289,6 +302,7 @@ function startGame(type) {
 	document.documentElement.style.setProperty(`--p1-pointer`, 0);
 	document.documentElement.style.setProperty(`--p2-pointer`, 0);
 	wordList = wordList.sort((a, b) => (Math.random() > 0.5 ? 1 : -1));
+	wordLevel = 0;
 
 	if (type === 0) {
 		changeGameState(GameStates.TYPE_1_GAME);
@@ -333,6 +347,11 @@ function compile(className) {
 function changeGameState(state) {
 	gameState = state;
 	document.body.setAttribute('class', state);
+	setTimeout(() => {
+		if (gameState === GameStates.TYPE_SELECTION) {
+			document.querySelector('button').focus();
+		}
+	}, 300);
 }
 
 function init() {
