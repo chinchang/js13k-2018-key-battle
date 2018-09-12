@@ -51,32 +51,6 @@
             compile('Controller');
             compile('Sentence');
         </script>
-        <!-- <script src="player-small.js"></script> -->
-        <!-- <script src="music.js"></script> -->
-        <script>
-            window.onload = () => {
-                return;
-                // http://sb.bitsnbites.eu/?data=U0JveAwC7dA9SgNRFAXgc50wYqON-NMNcR9iY2nrSrKAqQ1OoYVdLF2GrsHetYwDsQiipBPF7ztcznuvu29-nVS6pl761PNiL2mP5kkum6rjp3RX7WlbtVwtV_ePN7ffdT4MUx6-6M_upmw2AAAAAAAA_KhxUdOkMmvP1i87-0m3Pv315YYtAQAAAAAA4J956yuvfWqctefT9WK3mvEg3WFO2jS-57cbtgwAAAAAAACb3gE
-                var player = new CPlayer();
-                player.init(song);
-                const bgmInterval = setInterval(() => {
-                    const done = player.generate();
-                    if (done >= 1) {
-                        var wave = player.createWave();
-                        var audio = document.createElement("audio");
-                        audio.src = URL.createObjectURL(new Blob([wave], {
-                            type: "audio/wav"
-                        }));
-                        audio.loop = true;
-                        audio.autoplay = true;
-                        // audio.play();
-                        // document.body.appendChild(audio);
-                        clearInterval(bgmInterval);
-                    }
-                }, 10);
-            }
-        </script>
-
     </body>
 
 </html>
