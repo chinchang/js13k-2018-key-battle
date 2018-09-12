@@ -12,18 +12,42 @@
     </head>
 
     <body>
+        <div class="stage-wrap">
+            <div id="stageEl" class="stage">
 
-        <div id="p1" class="sprite boy"></div>
-        <div id="p2" class="sprite boy c2"></div>
-        <div class="sprite p1-score">
-            <div id="p1ScoreEl" class="number number-0"></div>
-        </div>
-        <div class="sprite p2-score">
-            <div id="p2ScoreEl" class="number number-0"></div>
-        </div>
-        <controller id="0" class="controller1" leftKey="97" rightKey="100" enterkey="115"></controller>
-        <controller id="1" class="controller2" leftKey="106" rightKey="108" enterkey="107"></controller>
+                <div id="p1" class="sprite boy"></div>
+                <div id="p2" class="sprite boy c2"></div>
+                <div class="sprite p1-score">
+                    <div id="p1ScoreEl" class="number number-0"></div>
+                </div>
+                <div class="sprite p2-score">
+                    <div id="p2ScoreEl" class="number number-0"></div>
+                </div>
+                <controller id="0" class="controller1" leftKey="97" rightKey="100" enterkey="115"></controller>
+                <controller id="1" class="controller2" leftKey="106" rightKey="108" enterkey="107"></controller>
 
+                <div style="width:100%;height: 100%; display: flex; flex-direction: column;align-items: center;">
+                    <button class="sprite btn">
+                        <div class=" word">
+                            <div class="alphabet alphabet-v"></div>
+                            <div class="alphabet alphabet-s"></div>
+                            <div class="alphabet alphabet-"></div>
+                            <div class="number number-2"></div>
+                            <div class="alphabet alphabet-p"></div>
+                        </div>
+                    </button>
+                    <button class="sprite btn">
+                        <div class=" word">
+                            <div class="alphabet alphabet-v"></div>
+                            <div class="alphabet alphabet-s"></div>
+                            <div class="alphabet alphabet-"></div>
+                            <div class="number number-2"></div>
+                            <div class="alphabet alphabet-p"></div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
         <div class="overlay"></div>
 
 

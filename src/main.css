@@ -1,6 +1,6 @@
 :root {
-    --zoom: 12;
-    --pixel-size: 12px;
+    --zoom: 1;
+    --pixel-size: 1px;
     --z-index-tree: 800;
     --z-index-boy: 900;
     --z-index-word: 950;
@@ -15,26 +15,47 @@ body {
     height: 100vh;
     overflow: hidden;
     margin: 0;
+    background-color: black;
+}
+
+.stage-wrap {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stage {
     position: relative;
-    /* background-color: cornflowerblue; */
+    /* top: calc(50vw - var(--pixel-size) * 90); */
+    width: 100px;
+    height: 80px;
+    transform-origin: center center;
+    border: 1px solid black;
     background-color: hsl(50, 69%, 61%);
     transition: background-color 4s ease;
+    transform: scale(var(--zoom));
 }
 
 .sprite {
     position: absolute;
     image-rendering: -moz-crisp-edges;
     image-rendering: pixelated;
-    transform: scale(var(--zoom));
-    transform-origin: left bottom;
+    /* transform: scale(var(--zoom)); */
+    /* transform-origin: left bottom; */
+}
+
+.btn {
+    border: 1px solid #000;
 }
 
 .boy {
     width: 24px;
     height: 24px;
     z-index: var(--z-index-boy);
-    bottom: calc(var(--pixel-size) * -1);
-    left: calc(var(--pixel-size) * 3);
+    bottom: calc(var(--pixel-size) * 0);
+    left: 4px;
     animation: rise-up cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s forwards;
 }
 
@@ -65,8 +86,9 @@ body {
 
 .c2 {
     left: auto;
-    right: calc(var(--pixel-size) * 2);
-    transform: scale(calc(var(--zoom) * -1), var(--zoom));
+    right: 4px;
+    transform: scale(-1, 1);
+    /* transform: scale(calc(var(--zoom) * -1), var(--zoom)); */
 }
 
 .c2:after {
@@ -190,18 +212,13 @@ body {
 }
 
 .controller1 {
-    left: calc(var(--pixel-size) * 10);
-    bottom: calc(var(--pixel-size) * 25);
+    left: 2px;
+    bottom: 30px;
 }
 
 .controller2 {
-    right: calc(var(--pixel-size) * 15);
-    bottom: calc(var(--pixel-size) * 25);
-}
-
-.p1-life {
-    left: calc(var(--pixel-size) * 1);
-    bottom: calc(var(--pixel-size) * 30);
+    right: 9px;
+    bottom: 30px;
 }
 
 .alphabet {
@@ -242,11 +259,11 @@ body {
 }
 
 .p1-score {
-    left: calc(var(--pixel-size) * 6);
-    bottom: calc(var(--pixel-size) * 60);
+    left: 2px;
+    bottom: 40px;
 }
 
 .p2-score {
-    right: calc(var(--pixel-size) * 16);
-    bottom: calc(var(--pixel-size) * 60);
+    right: 6px;
+    bottom: 40px;
 }

@@ -4,8 +4,10 @@ let sprites = [];
 const FPS = 30;
 const FRAME_DELAY = 1000 / FPS;
 let lastUpdateTime = Date.now();
-const W = window.innerWidth;
-const H = window.innerHeight;
+const W = ~~(window.innerWidth / 7);
+const H = ~~(Math.min(500, window.innerHeight) / 7);
+stageEl.style.width = `${W}px`;
+stageEl.style.height = `${H}px`;
 const TREE_COUNT = 10;
 const timeColors = [
 	'hsl(50, 69%, 61%)',
@@ -64,10 +66,12 @@ class Word {
 		this.el.appendChild(createNode('div', ['pointer', 'pointer1']));
 		this.el.appendChild(createNode('div', ['pointer', 'pointer2']));
 
-		document.body.appendChild(this.el);
-		this.x = W / 2 - word.length * PIXEL_SIZE * 3.5;
+		stageEl.appendChild(this.el);
+		this.x = W / 2 - word.length * 3;
 		this.y = 0;
 		this.bounds = this.el.getBoundingClientRect();
+		this.w = this.el.offsetWidth;
+		this.h = this.el.offsetHeight;
 	}
 	destroy() {
 		this.isActive = false;
@@ -78,14 +82,15 @@ class Word {
 			return;
 		}
 
-		this.y += PIXEL_SIZE;
-		if (this.y > H) {
+		this.y += 1;
+		if (this.y + this.h > H) {
 			this.isActive = false;
+			const bounds = this.el.getBoundingClientRect();
 			blastAround({
-				x: this.x,
-				y: this.y - this.bounds.height,
-				w: this.bounds.width,
-				h: this.bounds.height
+				x: bounds.left,
+				y: bounds.top,
+				w: bounds.width,
+				h: bounds.height
 			});
 			play('explosion');
 		}
@@ -102,9 +107,9 @@ class Bird {
 		this.creationTime = Date.now();
 		this.x = 0;
 		this.y = 0;
-		this.speedX = random(3, 8);
+		this.speedX = random(2, 5);
 		var el = createNode('div', ['sprite', 'bird']);
-		document.body.appendChild(el);
+		stageEl.appendChild(el);
 		this.el = el;
 	}
 	update() {
@@ -132,7 +137,7 @@ class Cloud {
 		this.x = 0;
 		this.y = 0;
 		var el = createNode('div', ['sprite', 'cloud']);
-		document.body.appendChild(el);
+		stageEl.appendChild(el);
 		this.el = el;
 	}
 	update() {
@@ -140,7 +145,7 @@ class Cloud {
 			return;
 		}
 
-		this.x += 2;
+		this.x += random(1, 3);
 		if (this.x > W) {
 			this.isActive = false;
 			this.el.remove();
@@ -205,8 +210,7 @@ function random(a, b) {
 }
 
 function incrementTime() {
-	document.body.style.backgroundColor =
-		timeColors[++timeIndex % timeColors.length];
+	stageEl.style.backgroundColor = timeColors[++timeIndex % timeColors.length];
 }
 
 function createNode(tag, classes) {
@@ -222,6 +226,8 @@ function blast(x, y, color) {
 	}
 }
 function blastAround({ x, y, w, h, color }) {
+	// x *= PIXEL_SIZE;
+	// y *= PIXEL_SIZE;
 	for (let i = 5; i--; ) {
 		setTimeout(() => {
 			blast(x + random(0, w), y + random(0, h), color);
@@ -230,18 +236,20 @@ function blastAround({ x, y, w, h, color }) {
 }
 
 function update() {
-	if (Math.random() < 0.005) {
-		incrementTime();
-	}
-	if (Math.random() < 0.01) {
-		const b = new Bird();
-		b.y = `calc(var(--pixel-size) * ${random(15, 80)})`;
-		sprites.push(b);
-	}
-	if (Math.random() < 0.003) {
-		const b = new Cloud();
-		b.y = `calc(var(--pixel-size) * ${random(5, 80)})`;
-		sprites.push(b);
+	if (1) {
+		if (Math.random() < 0.005) {
+			incrementTime();
+		}
+		if (Math.random() < 0.01) {
+			const b = new Bird();
+			b.y = `${random(15, H)}`;
+			sprites.push(b);
+		}
+		if (Math.random() < 0.003) {
+			const b = new Cloud();
+			b.y = `calc(var(--pixel-size) * ${random(5, 80)})`;
+			sprites.push(b);
+		}
 	}
 	sprites.forEach(s => s.update());
 	sprites = sprites.filter(s => s.isActive);
@@ -264,19 +272,19 @@ function loop() {
 function checkWin() {
 	var didWon = false;
 	if (playerWords[0] === currentWord.word) {
-		console.log('PLAYER 1 WON');
-		playerScores[0]++;
-		p1ScoreEl.setAttribute('class', `number number-${playerScores[0]}`);
-		didWon = true;
+		didWon = 0;
 	} else if (playerWords[1] === currentWord.word) {
-		console.log('PLAYER 2 WON');
-		playerScores[1]++;
-		p1ScoreEl.setAttribute('class', `number number-${playerScores[1]}`);
-		didWon = true;
+		didWon = 1;
 	}
-	if (didWon) {
+	if (didWon !== false) {
+		console.log(`PLAYER ${didWon + 1} WON`);
+		playerScores[didWon]++;
+		window[`p${didWon + 1}ScoreEl`].setAttribute(
+			'class',
+			`number number-${playerScores[didWon]}`
+		);
 		play('coin');
-		speak('Player 1 gets 1 point');
+		speak(`Player ${didWon + 1} gets 1 point`);
 		playerWords[0] = playerWords[1] = '';
 		document.documentElement.style.setProperty(`--p1-pointer`, 0);
 		document.documentElement.style.setProperty(`--p2-pointer`, 0);
@@ -307,11 +315,12 @@ function init() {
 			'tree',
 			isCactusTree ? 'cactus' : ''
 		]);
-		tree.style.left = `calc(var(--pixel-size) * ${random(5, 100)})`;
+		tree.style.left = `${random(10, W - 10)}px`;
 
-		document.body.appendChild(tree);
+		stageEl.appendChild(tree);
 	}
 	window.addEventListener('click', e => {
+		console.log(e.pageX, e.pageY);
 		blast(e.pageX, e.pageY);
 	});
 	window.addEventListener('controllerinput', e => {
@@ -326,6 +335,13 @@ function init() {
 			const looserBounds = window[
 				`p${(e.playerId ^ 1) + 1}`
 			].getBoundingClientRect();
+			console.log({
+				x: winnerBounds.left,
+				y: winnerBounds.top,
+				w: winnerBounds.width,
+				h: winnerBounds.height,
+				color: Colors.VICTORY
+			});
 			blastAround({
 				x: winnerBounds.left,
 				y: winnerBounds.top,
