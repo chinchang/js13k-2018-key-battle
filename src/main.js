@@ -60,15 +60,18 @@ function registerCompilableClass(claz) {
 	compilableClasses[claz.name] = claz;
 }
 
+function addSentence(container, word, classes) {
+	var sentence = document.createElement('Sentence');
+	sentence.setAttribute('word', word);
+	sentence.setAttribute('classes', classes);
+	container.appendChild(sentence);
+	return compile('Sentence')[0];
+}
 class Word {
 	constructor(word) {
 		this.isActive = true;
 		this.word = word;
-		var sentence = document.createElement('Sentence');
-		sentence.setAttribute('word', word);
-		sentence.setAttribute('classes', 'sprite');
-		stageEl.appendChild(sentence);
-		this.el = compile('Sentence')[0];
+		this.el = addSentence(stageEl, word, 'sprite');
 
 		this.el.appendChild(createNode('div', ['pointer', 'pointer-1']));
 		this.el.appendChild(createNode('div', ['pointer', 'pointer-2']));
@@ -247,8 +250,9 @@ function loop() {
 }
 
 function updateScoreUi() {
-	p1ScoreEl.setAttribute('class', `number number-${playerScores[0]}`);
-	p2ScoreEl.setAttribute('class', `number number-${playerScores[1]}`);
+	p1ScoreEl.innerHTML = p2ScoreEl.innerHTML = '';
+	addSentence(p1ScoreEl, playerScores[0] + '', '');
+	addSentence(p2ScoreEl, playerScores[1] + '', '');
 }
 
 function checkWin() {

@@ -7,7 +7,8 @@ class Sentence {
 			.toLowerCase()
 			.split('')
 			.map(char => {
-				if (parseInt(char, 10)) {
+				// console.log(word, char, parseInt(char, 10));
+				if (!isNaN(parseInt(char, 10))) {
 					return (
 						'<div class="number number-' +
 						(char === ' ' ? '' : char) +
