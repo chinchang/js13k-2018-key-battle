@@ -310,6 +310,7 @@ a {
     margin-top: 2px;
     line-height: 0.7;
     display: none;
+    transform: scale(0.8);
 }
 
 /*  GAME STATES */

@@ -99,6 +99,15 @@ class Word {
 
 			if (gameState === GameStates.TYPE_1_GAME) {
 				// gameover
+				if (gameState === GameStates.TYPE_1_GAME) {
+					window.open(
+						`http://twitter.com/share?url=${
+							location.href
+						}&text=🎮 I reached level ${
+							playerScores[0]
+						} of Key Battle 🔥.&count=horiztonal&hashtags=js13k,game&via=chinchang457&related=chinchang457`
+					);
+				}
 				changeGameState(GameStates.TYPE_SELECTION);
 				setTimeout(() => {
 					this.destroy();
@@ -293,8 +302,11 @@ function startNewWord() {
 	}
 	const word = wordList[wordLevel++];
 	handleWordSpeed();
-	// const word = 'ab';
-	speak(`new word is, ${word}`);
+	if (wordLevel > 5) {
+		speak(word);
+	} else {
+		speak(`new word is, ${word}`);
+	}
 	currentWord = new Word(word.toLowerCase());
 	sprites.push(currentWord);
 }
@@ -313,6 +325,7 @@ function startGame(type) {
 	} else {
 		changeGameState(GameStates.TYPE_2_GAME);
 	}
+	play('start');
 	playerScores[0] = playerScores[1] = 0;
 	playerWords[0] = playerWords[1] = '';
 	updateScoreUi();
@@ -380,6 +393,8 @@ function init() {
 			gameState === GameStates.TYPE_SELECTION &&
 			(e.which === 38 || e.which === 40)
 		) {
+			play('button');
+
 			if (!document.activeElement) {
 				document.querySelector('button').focus();
 			} else if (
@@ -399,7 +414,7 @@ function init() {
 			return;
 		}
 		if (currentWord.word.indexOf(playerWords[e.playerId] + e.letter) === 0) {
-			play('powerup');
+			gameState === GameStates.TYPE_2_GAME ? play('powerup') : play('coin');
 			playerWords[e.playerId] += e.letter;
 			document.documentElement.style.setProperty(
 				`--p${e.playerId + 1}-pointer`,
