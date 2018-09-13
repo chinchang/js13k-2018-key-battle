@@ -395,7 +395,10 @@ function init() {
 		) {
 			play('button');
 
-			if (!document.activeElement) {
+			if (
+				!document.activeElement ||
+				document.activeElement.tagName !== 'BUTTON'
+			) {
 				document.querySelector('button').focus();
 			} else if (
 				document.activeElement.nextElementSibling.tagName === 'BUTTON'
